@@ -1,0 +1,30 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+header#banner.hero-unit
+  .container
+    h1 HeatMap Application
+    img(src='assets/images/yeoman.png', alt='I\'m Yeoman')
+
+.container
+  .row
+    .col-lg-12
+      h1.page-header Login
+      .alert.alert-danger(ng-show='error') There was a problem logging in. Please try again.
+      form(role='form', ng-submit='login()')
+        .form-group
+          label(for='username') Username
+          input#username.form-control(type='text', name='username', ng-model='credentials.username')
+        .form-group
+          label(for='password') Password
+          input#password.form-control(type='password', name='password', ng-model='credentials.password')
+        button.btn.btn-primary(type='submit') Submit
+        
+
+footer.footer
+  .container
+    p
+      | Angular Fullstack v2.0.13
+      = ' | '
+      a(href='https://twitter.com/tyhenkel') @tyhenkel
+      = ' | '
+      a(href='https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open') Issues
