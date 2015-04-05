@@ -1,15 +1,16 @@
 'use strict';
 
 angular.module('heatMapApp')
-  .controller('NavbarCtrl', function ($scope, $location) {
-    $scope.menu = [{
-      'title': 'Home',
-      'link': '/'
-    }];
+  .controller('NavbarCtrl', function ($scope, $location, $http) {
+    $scope.logOutActive = ('/' === $location.path());
 
-    $scope.isCollapsed = true;
-
-    $scope.isActive = function(route) {
-      return route === $location.path();
-    };
+    $scope.logOut = function(){
+        $http.post('/api/logout')
+            .success(function(data){
+                console.log('data: ', data.status);
+                if(data.status) {
+                    $location.path("/login");                    
+                }
+            });
+    }
   });

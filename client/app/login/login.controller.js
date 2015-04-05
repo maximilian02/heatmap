@@ -37,6 +37,7 @@ angular.module('heatMapApp')
 				console.log('callback!!!!!!');
 		        if ($rootScope.authenticated) {
 		          	$scope.error = false;
+		          	$location.path("/");
 		        } else {
 		          	$scope.credentials.username = $scope.credentials.password = '';
 		          	$scope.error = true;
@@ -46,7 +47,7 @@ angular.module('heatMapApp')
 	};
 
 	var checkSession = function() {
-		$http.get('/api/data')
+		$http.get('/api/session')
 	    	.success(function(data){
 	    		console.log('data: ', data);
 	    		if(data.user_active) {

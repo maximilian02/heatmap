@@ -4,8 +4,8 @@ var _ = require('lodash'),
     https = require('https');
 
 exports.post = function(req, res) {
-  console.info('user: ', req.body.username);
-  console.info('pass: ', req.body.password);
+  // console.info('user: ', req.body.username);
+  // console.info('pass: ', req.body.password);
 
   var setResponseData = function(statusCode, obj) {
     if (200 === statusCode) {
@@ -46,7 +46,7 @@ exports.post = function(req, res) {
 
   // do the POST call
   var reqPost = https.request(optionspost, function(httpsRes) {
-      console.log("statusCode: ", httpsRes.statusCode);
+      // console.log("statusCode: ", httpsRes.statusCode);
       // console.log("headers: ", httpsRes.headers);
    
       httpsRes.on('data', function(d) {
@@ -54,7 +54,7 @@ exports.post = function(req, res) {
           // console.info('POST result:\n');
           // process.stdout.write(d);
           // console.info('\n\nPOST completed');
-          console.log('credentials: ', req.session.credentials);
+          // console.log('credentials: ', req.session.credentials);
           res.json(setResponseData(httpsRes.statusCode, jsonObj));
       });
   });
