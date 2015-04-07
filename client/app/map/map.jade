@@ -4,3 +4,4 @@ div(ng-include='"components/navbar/navbar.html"')
   .row
     h1.page-header Map
     #map-canvas
+    p.page(ng-repeat="page in getNumber(totalPages) track by $index") {{$index+1}}

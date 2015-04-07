@@ -12,10 +12,10 @@
 var _ = require('lodash'),
     https = require('https');
 
-
 // Get Data
 exports.index = function(req, res) {
-	var response = {};
+	var response = {},
+		chunk = '';
 
 	console.log('REQ!!!!', req.query.page);
 
@@ -48,21 +48,18 @@ exports.index = function(req, res) {
 	  console.log("headers: ", httpsRes.headers);
 
 	  httpsRes.on('data', function(d) {
-	      var jsonObj = JSON.parse(d);
-	      // console.info('GET result:\n');
-	      // process.stdout.write(d);
-	      // console.info('\n\nGET completed');
-	      // console.log('credentials: ', req.session.credentials);
-	      res.json(setResponseData(httpsRes.statusCode, jsonObj));
+	  	chunk += d.toString('utf8');
 	  });
+
+	  httpsRes.on('end', function(d) {
+	  	res.json(setResponseData(httpsRes.statusCode, JSON.parse(chunk)));
+	  });
+
 	});
    
 	// write the json data
-	// reqPost.write(optionsget);
 	reqPost.end();
 	reqPost.on('error', function(e) {
 	  console.error(e);
 	});
-
-	// res.json(response);
 };
