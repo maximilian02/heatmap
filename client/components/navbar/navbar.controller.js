@@ -2,7 +2,8 @@
 
 angular.module('heatMapApp')
   .controller('NavbarCtrl', function ($scope, $location, $http) {
-    $scope.logOutActive = ('/' === $location.path());
+    var reg = new RegExp('\/[0-9]{1,}\/');
+    $scope.logOutActive = (reg.test($location.path()));
 
     $scope.logOut = function(){
         $http.post('/api/logout')

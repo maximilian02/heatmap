@@ -17,17 +17,13 @@ exports.index = function(req, res) {
 	var response = {},
 		chunk = '';
 
-	console.log('REQ!!!!', req.query.page);
-
 	var setResponseData = function(statusCode, obj) {
 	    return  {
 	              'statusCode': statusCode,
 	              'object': obj,
 	            };
 	 };
-	// if req.session.credentials
-	console.log('TOKEN!: ', req.session.credentials.token);
-	// auth is: 'Basic VGVzdDoxMjM='
+
 	// prepare the header
 	var optionsget = {
 		host: 'api-admin-staging.techcareinc.com',
@@ -38,23 +34,15 @@ exports.index = function(req, res) {
 	   }    
 	};
 
-  // console.info('optionsget prepared:');
-  // console.info(optionsget);
-  // console.info('Do the POST call');
-
-	// do the POST call
+	// do the GET call
 	var reqPost = https.get(optionsget, function(httpsRes) {
-	  // console.log("statusCode: ", httpsRes.statusCode);
-	  console.log("headers: ", httpsRes.headers);
+		httpsRes.on('data', function(d) {
+			chunk += d.toString('utf8');
+	  	});
 
-	  httpsRes.on('data', function(d) {
-	  	chunk += d.toString('utf8');
-	  });
-
-	  httpsRes.on('end', function(d) {
-	  	res.json(setResponseData(httpsRes.statusCode, JSON.parse(chunk)));
-	  });
-
+	  	httpsRes.on('end', function(d) {
+	  		res.json(setResponseData(httpsRes.statusCode, JSON.parse(chunk)));
+	  	});
 	});
    
 	// write the json data
