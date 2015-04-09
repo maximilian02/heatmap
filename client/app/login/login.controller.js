@@ -36,8 +36,9 @@ angular.module('heatMapApp')
 			function() {
 				console.log('callback!!!!!!');
 		        if ($rootScope.authenticated) {
+		        	$rootScope.logOutActive = true;
 		          	$scope.error = false;
-		          	$location.path("/map");
+		          	$location.path("/map", true);
 		        } else {
 		          	$scope.credentials.username = $scope.credentials.password = '';
 		          	$scope.error = true;
@@ -51,7 +52,8 @@ angular.module('heatMapApp')
 	    	.success(function(data){
 	    		console.log('data: ', data);
 	    		if(data.user_active) {
-		          	$location.path("/map");
+	    			$rootScope.logOutActive = true;
+		          	$location.path("/map", true);
 	    		}
 	    	});
 	}

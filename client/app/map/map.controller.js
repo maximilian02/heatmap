@@ -44,6 +44,7 @@ angular.module('heatMapApp')
 		latLongData = [];
   		$scope.showLoader = true;
 		console.log('loaded: ', loadPage);
+		
 		if($routeParams.pageId) {
 			$scope.currentPage = $routeParams.pageId;
 		} else {

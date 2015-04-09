@@ -1,17 +1,21 @@
 'use strict';
 
 angular.module('heatMapApp')
-  .controller('NavbarCtrl', function ($scope, $location, $http) {
-    var reg = new RegExp('\/[0-9]{1,}\/');
-    $scope.logOutActive = (reg.test($location.path()));
+  .controller('NavbarCtrl', function ($scope, $rootScope, $location, $http, $window) {
+    $rootScope.logOutActive = ($location.path().indexOf('map') != -1);
+    $scope.logOutActive = $rootScope.logOutActive;
 
-    $scope.logOut = function(){
+    console.log("Path", $location.path());
+    console.log("REGEX", $rootScope.logOutActive);
+    console.log("algo; ", $scope.logOutActive);
+
+    $scope.logOut = function() {
+        $rootScope.logOutActive = false;
         $http.post('/api/logout')
             .success(function(data){
-                console.log('data: ', data.status);
-                if(data.status) {
-                    $location.path("/login");                    
-                }
+                console.log('CHECKOUT');
+                $window.location.reload();
             });
     }
+
   });
