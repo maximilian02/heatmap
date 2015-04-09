@@ -6,7 +6,7 @@
 2. 'npm install'
 3. 'grunt serve'
 
-## Versiones recomendadas para correr el proyecto ##
+## Versiones recomendadas##
 
 - Ruby 1.9.3 
 - Compass 0.12.6 (Alnilam)
