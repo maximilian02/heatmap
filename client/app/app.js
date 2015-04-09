@@ -25,7 +25,7 @@ angular.module('heatMapApp', [
           templateUrl: 'app/404/404.html'
       })
       .otherwise({
-        redirectTo: '/404'
+        redirectTo: '/map'
       });
 
     $locationProvider.html5Mode(true);
