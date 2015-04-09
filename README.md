@@ -13,5 +13,3 @@
   - gem install compass -v 0.12.6
 - Sass 3.2.19 (Media Mark)
   - gem install sass -v 3.2.19  
-- FontAwesome 
-  - gem install font-awesome-sass
