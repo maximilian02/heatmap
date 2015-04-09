@@ -20,9 +20,4 @@ describe('Controller: LoginCtrl', function () {
       $scope: scope
     });
   }));
-
-  it('should attach a list of things to the scope', function () {
-    $httpBackend.flush();
-    expect(scope.apiData.length).toBe(4);
-  });
 });
